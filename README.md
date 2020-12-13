@@ -1,4 +1,4 @@
-# RBF-Regression
+# Image-Inpainting
 ![alt text](data/expected/expected.png)
 ## Introduction
 This is an assignment of Introduction to Machine Learning at University of Toronto. The task is for students to complete RBF Regression method in order to impaint the corrupted picture. 
