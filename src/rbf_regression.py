@@ -9,7 +9,6 @@ class RBFRegression():
     def __init__(self, centers, widths):
         """ This class represents a radial basis function regression model.
 
-        TODO: You will need to implement the methods of this class:
         - predict(X): ndarray -> ndarray
         - fit_with_l2_regularization(train_X, train_Y, l2_coef): ndarray, float -> None
 
@@ -61,12 +60,6 @@ class RBFRegression():
         f(x) = w_0 + w_1 * b_0(x) + w_2 * b_1(x) + ... + w_K * b_K(x), 
         where b_i is the i'th radial basis function.
 
-        TODO: You will need to implement the above function and handle multiple 2D inputs,
-              formatted as a Nx2 matrix.
-        
-        NOTE: You must not iterate through inputs.
-        HINT: You can use self._rbf_2d to compute b_i(X).
-        
         Args:
         - X (ndarray (Shape: (N, 2))): A Nx2 matrix consisting N 2D input data.
 
@@ -78,11 +71,11 @@ class RBFRegression():
         assert X.shape[1] == 2, f"Each input should contain two components. Got: {X.shape[1]}"
 
         # ====================================================
-        N = X.shape[0]
-        B = np.ones((N, self.K + 1))
-        for rbf in range(self.K):
-            B[:, rbf + 1] = np.transpose(self._rbf_2d(X, rbf))
-        return B @ self.parameters
+        B = np.ones((X.shape[0], self.K+1))
+        for rbf_i in range(self.K):
+            B[:,rbf_i+1] = self._rbf_2d(X, rbf_i).transpose()
+        y_pred = np.matmul(B, self.parameters)
+        return y_pred
         # ====================================================
     
     def fit_with_l2_regularization(self, train_X, train_Y, l2_coef):
@@ -90,9 +83,6 @@ class RBFRegression():
 
         Recall that the optimal parameters are:
         parameters = (X^{T}X)^{-1}X^{T}Y
-
-        TODO: You will need to replace self.parameters to the optimal parameters. Remember that the shape
-              of the self.parameters is (K + 1, 1), where the first entry is the bias
 
         NOTE: Do not forget that we are using radial basis functions!
 
@@ -105,11 +95,13 @@ class RBFRegression():
         assert train_Y.shape[1] == 1, f"Each output should contain 1 component. Got: {train_Y.shape[1]}"
 
         # ====================================================
-        N = train_X.shape[0]
-        B = np.ones((N, self.K + 1))
-        for rbf in range(self.K):
-            B[:, rbf + 1] = np.transpose(self._rbf_2d(train_X, rbf))
-        self.parameters = np.inv(np.transpose(B)@B + l2_coef*np.eye(N)) @ np.transpose(B) @ train_Y
+        I = np.eye(self.K + 1)
+        B = np.ones((train_X.shape[0], self.K+1))
+        for rbf_i in range(self.K):
+            B[:,rbf_i+1] = self._rbf_2d(train_X, rbf_i).transpose()
+        p1 = np.linalg.inv(np.matmul(B.transpose(),B) + l2_coef*I) # (B^T B) inverse
+        p2 = np.matmul(B.transpose(),train_Y)
+        self.parameters = np.matmul(p1,p2)
         # ====================================================
         assert self.parameters.shape == (self.K + 1, 1)
 
