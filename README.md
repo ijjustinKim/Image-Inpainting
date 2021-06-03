@@ -9,7 +9,8 @@ This assignment was originally created by Prof. David Fleet and his TAs, B. Chan
 This assignment requires matplotlib==3.1.2 or higher and numpy==1.18.0 or higher.
 ### Execution
 ```bash
-python3 src/rbf_image_inpainting.py
+pip install -r requirements.txt
+python src/rbf_image_inpainting.py
 ```
 ### Usage
 In the rbf_image_inpainting.py file, you may alter the hypter parameters - spacing, width, and l2_coef - in order to improve performance.
