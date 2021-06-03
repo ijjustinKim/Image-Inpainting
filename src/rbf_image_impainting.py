@@ -155,7 +155,7 @@ def RBF_image_inpainting(image_name, fill_rgb, spacing, width, l2_coef, patch_si
 
 if __name__ == "__main__":
     import matplotlib.pyplot as plt
-    image_name = '../data/img/Amazing_jellyfish_corrupted_by_text.tif'
+    image_name = './data/img/Amazing_jellyfish_corrupted_by_text.tif'
 
     # The color need to be filled, you could modify it to suit your own test cases
     # The array specifies the RGB, integers ranging from 0 to 255.
