@@ -1,5 +1,6 @@
 # Image-Inpainting
-![alt text](data/expected/expected.png)
+![alt text](data/img/Amazing_jellyfish_corrupted_by_text.png)
+![alt text](data/img/expected.png)
 ## Introduction
 This is an assignment of Introduction to Machine Learning at University of Toronto. The task is for students to complete RBF Regression method in order to inpaint the corrupted picture. 
 ## Credit
