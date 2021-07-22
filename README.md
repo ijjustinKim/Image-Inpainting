@@ -2,7 +2,7 @@
 ![alt text](data/img/Amazing_jellyfish_corrupted_by_text.png)
 ![alt text](data/img/expected.png)
 ## Introduction
-This is an assignment of Introduction to Machine Learning at University of Toronto. The task is for students to complete RBF Regression method in order to inpaint the corrupted picture. 
+This is an assignment from the Introduction to Machine Learning course at the University of Toronto. The task is to complete the RBF Regression method to inpaint the corrupted picture. 
 ## Credit
 This assignment was originally created by Prof. David Fleet and his TAs, B. Chan and S. wei. However, all the tasks were completed by myself.
 ### Requirements
@@ -13,4 +13,4 @@ pip install -r requirements.txt
 python src/rbf_image_inpainting.py
 ```
 ### Usage
-In the rbf_image_inpainting.py file, you may alter the hypter parameters - spacing, width, and l2_coef - in order to improve performance.
+In the rbf_image_inpainting.py file, you may alter the hypter parameters - spacing, width, and l2_coef - to improve the performance.
